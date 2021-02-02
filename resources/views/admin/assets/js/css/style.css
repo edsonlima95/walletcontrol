@@ -1,0 +1,56 @@
+.bg-color-default-green {
+    background-color:  #00ff5f;
+    border: none;
+}
+.bg-color-default-green-2 {
+    background-color:  #00c54a;
+    border: none;
+}
+
+div.content-wrapper{
+    background-color:  #00ff5f;
+}
+
+/*menu lateral*/
+aside.main-sidebar {
+    background-color:  #00ff5f;
+    color: #343a40;
+}
+
+aside.main-sidebar a{
+    color: #001909;
+}
+
+.nav-sidebar .nav-item>.nav-link {
+    color: black;
+}
+
+/*nav topo*/
+nav.main-header {
+    background-color:  #00ff5f;
+}
+
+/*cards da home*/
+div.card {
+    background-color:  #03f55d;
+    color: black;
+}
+
+div.card-header{
+    color:  black;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/*faturas foemulario*/
+form.invoice-form input, form.invoice-form select {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+/*rodapé*/
+footer {
+    background-color: #00ff5f!important;
+}

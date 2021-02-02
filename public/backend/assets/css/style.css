@@ -1,0 +1,113 @@
+
+/*tabela*/
+input[name='date1'],input[name='date2']{
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+.red-status {
+    color: #dc3545;
+}
+
+/*Tira algusn textos das tabelas*/
+.dataTables_info {
+    display: none;
+}
+.bg-color-default-green {
+    background-color:  #00ff5f;
+    border: none;
+}
+.bg-color-default-green-2 {
+    background-color:  #00c54a;
+    border: none;
+}
+
+div.info a {
+    color: black!important;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+div.content-wrapper{
+    background-color:  #00ff5f;
+}
+
+/*menu lateral*/
+aside.main-sidebar {
+    background-color: #00ff5f;
+    color: #343a40;
+}
+
+aside.main-sidebar a{
+    color: #001909;
+}
+
+.nav-sidebar .nav-item>.nav-link {
+    color: black;
+}
+
+/*nav topo*/
+nav.main-header {
+    background-color:  #00ff5f;
+    border-bottom: 1px solid black;
+}
+
+/*cards da home*/
+div.card {
+    background-color:  #03f55d;
+    color: black;
+}
+
+div.card-header{
+    color:  black;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/*faturas foemulario*/
+form.invoice-form input, form.invoice-form select {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+}
+
+/*Perfil*/
+div.cover {
+    width: 70px;
+    margin-bottom: 5px;
+}
+
+div.cover img{
+    border-radius: 50%;
+}
+
+input#cover {
+    display: none;
+}
+
+/*rodapé*/
+footer {
+    background-color: #00ff5f!important;
+}
+
+.main-footer {
+    border-top: none;
+    background-color: #03f55d !important;
+}
+
+/*navegação do lado direito - perfil*/
+
+aside.control-sidebar .aside-img {
+    width: 100px;
+    margin: 0 auto;
+}
+
+aside.control-sidebar a {
+    color: white;
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+}
