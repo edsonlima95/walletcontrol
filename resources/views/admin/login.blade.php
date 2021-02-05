@@ -32,6 +32,9 @@
     </style>
 </head>
 <body>
+
+@include('notify::messages')
+
 <div class="login-wrap d-flex">
     <div class="col-lg-4 left">
         <div class="col-lg-12 d-flex justify-content-end align-items-center" style="height: 100vh">
@@ -41,9 +44,6 @@
     <div class="col-lg-8 right">
         <div class="row d-flex justify-content-center align-items-center" style="height: 100vh">
             <div class="col-lg-6 ">
-                @php
-
-                    @endphp
                 <form action="{{route('control.login')}}" method="post" class="invoice-form" autocomplete="off">
                     @csrf
 
@@ -51,35 +51,32 @@
                         <div class="col-lg-12 d-flex justify-content-center my-3">
                             <i class="fa fa-lock fa-2x"></i>
                         </div>
-                        <div class="col-lg-12">
-                            @if($errors->any())
-                                @foreach($errors->all() as $error)
-                                    <div class="alart alert-danger p-3 my-4" style="border-radius: 5px" role="alert">
-                                        {{$error}}
-                                    </div>
-                                @endforeach
-                            @endif
-
-
-                            {{--Exibe as mensagem que nao sao da validação--}}
-                            @if(session()->exists('message'))
-                                {!!  session()->get('message')!!}
-                            @endif
-                        </div>
 
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="value">E-mail</label>
                                 <input type="text" name="email" value="{{old('email')}}"
-                                       class="form-control mask-money"
+                                       class="form-control mask-money {{$errors->has('email') ? 'is-invalid' : ''}}"
                                        id="value">
+                                @if($errors->has('email'))
+                                    <div class="invalid-feedback font-weight-bold">
+                                        {{$errors->first('email')}}
+                                    </div>
+                                @endif
                             </div>
                         </div>
+
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="password">Senha</label>
                                 <input type="password" name="password" value="{{old('password')}}"
-                                       class="form-control" id="password">
+                                       class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}"
+                                       id="password">
+                                @if($errors->has('password'))
+                                    <div class="invalid-feedback font-weight-bold">
+                                        {{$errors->first('password')}}
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

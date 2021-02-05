@@ -34,8 +34,8 @@ class WalletController extends Controller
     public function create()
     {
         if (Auth::user()->premium === 0) {
-            $message = $this->message->error("Desculpe, apenas o plano premium pode criar novas carteiras! clique <a href='#'> Aqui</a> e assine!")->render();
-            return redirect()->route('control.wallets.index')->with(['message'=>$message]);
+            notify()->error('Desculpe, apenas o plano premium pode criar novas carteiras', 'Plano Grátis');
+            return redirect()->route('control.wallets.index');
         }
 
         return view('admin.wallet.create');
@@ -57,8 +57,8 @@ class WalletController extends Controller
         $credentials['signature'] = 'premium';
 
         if (Wallet::create($credentials)) {
-            $message = $this->message->success('Sua carteira foi cadastrada com sucesso!')->render();
-            return redirect()->route('control.wallets.index')->with(['message' => $message]);
+            notify()->success('Sua carteira foi cadastrada com sucesso!','Sucesso');
+            return redirect()->route('control.wallets.index');
         }
     }
 

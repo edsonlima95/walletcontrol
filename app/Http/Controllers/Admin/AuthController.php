@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\User as UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -21,17 +22,14 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $credentials = $request->validate( [
             'email' => 'required',
             'password' => 'required|min:4'
         ]);
 
-
-
         if (!Auth::attempt($credentials)) {
-//            $message = $this->message->error('E-mail ou senha não conferem, pfv verifique os dados e tente novamente!')->render();
-           notify()->error('E-mail ou senha não conferem, pfv verifique os dados e tente novamente!');
-            return redirect()->route('control.signin');
+            notify()->error('E-mail ou senha não conferem, pfv verifique os dados e tente novamente!', 'Erro');
+            return redirect()->route('control.signin')->withInput();
         }
 
         $user = User::where('email', $credentials['email'])->first();
@@ -73,8 +71,8 @@ class AuthController extends Controller
         }
 
         if ($userCreate) {
-            $message = $this->message->success('Cadastro criado com sucesso, efetue o login e comece a controlar!')->render();
-            return redirect()->route('control.signin')->with(['message' => $message]);
+            notify()->success('Cadastro criado com sucesso, efetue o login e comece a controlar!', 'Sucesso');
+            return redirect()->route('control.signin');
         }
     }
 

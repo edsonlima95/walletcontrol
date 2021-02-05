@@ -13,7 +13,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset(mix('backend/assets/fontawesome-free/css/all.min.css')) }}">
-
+    @notifyCss
 
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset(mix('backend/assets/css/adminlte.min.css')) }}">
@@ -25,20 +25,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
+
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
+    @include('notify::messages')
+    <!-- Left navbar links -->
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
         </ul>
 
+
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
+
             <li class="nav-item dropdown show">
                 <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="true">
                     <i class="fas fa-wallet"></i>
@@ -104,7 +108,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     <li class="nav-item">
                         <a href="{{route('control.invoice',['type' => 'expense'])}}" class="nav-link">
-                            <i class="nav-icon fas fa-money-bill-wave-alt"></i>
+                            <i class="nav-icon fas fa-money-bill-alt"></i>
                             <p>
                                 Pagar
                             </p>
@@ -120,14 +124,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </li>
                     <li class="nav-item">
                         <a href="{{route('control.fixed')}}" class="nav-link">
-                            <i class="nav-icon fas fa-money-bill-alt"></i>
+                            <i class="nav-icon fas fa-money-bill-wave-alt"></i>
                             <p>
                                 Fixas
                             </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('control.users.edit',['user'=>\Illuminate\Support\Facades\Auth::user()->id])}}" class="nav-link">
+                        <a href="{{route('control.users.edit',['user'=>\Illuminate\Support\Facades\Auth::user()->id])}}"
+                           class="nav-link">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Perfil
@@ -179,7 +184,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="image aside-img text-center">
                 <img src="{{$cover}}" class="img-circle elevation-2"
                      alt="User Image" style="width: 100%; max-height: 100px;">
-                <h5 class="mt-3"><a href="{{route('control.users.edit',['user'=>\Illuminate\Support\Facades\Auth::user()->id])}}">Editar perfil</a></h5>
+                <h5 class="mt-3"><a
+                        href="{{route('control.users.edit',['user'=>\Illuminate\Support\Facades\Auth::user()->id])}}">Editar
+                        perfil</a></h5>
             </div>
 
             <ul class="list-unstyled">
@@ -190,8 +197,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </small>
                     </p>
                     <p>Email: <small>{{\Illuminate\Support\Facades\Auth::user()->email}}</small></p>
-                    <p>Plano: <small class="badge badge-success">{{\Illuminate\Support\Facades\Auth::user()->premium == 0 ? 'free' : 'premium'}}</small></p>
-                    <p>Acesso: <small class="badge badge-primary">{{\Illuminate\Support\Facades\Auth::user()->level == 0 ? 'usuário' : 'admin'}}</small></p>
+                    <p>Plano: <small
+                            class="badge badge-success">{{\Illuminate\Support\Facades\Auth::user()->premium == 0 ? 'free' : 'premium'}}</small>
+                    </p>
+                    <p>Acesso: <small
+                            class="badge badge-primary">{{\Illuminate\Support\Facades\Auth::user()->level == 0 ? 'usuário' : 'admin'}}</small>
+                    </p>
                 </li>
             </ul>
             <a href="{{route('control.signout')}}" class="btn btn-danger "><i class="fa fa-edit mr-2"></i>Sair</a>
@@ -202,7 +213,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main Footer -->
     <footer class="main-footer d-flex justify-content-center">
         <!-- Default to the left -->
-        <small style="color: #343a40!important" class="font-weight-bold">&copy; Todos os direitos reservados - Feito com <i class="fa fa-heart"></i> por mim</small>
+        <small style="color: #343a40!important" class="font-weight-bold">&copy; Todos os direitos reservados - Feito com
+            <i class="fa fa-heart"></i> por mim</small>
     </footer>
 </div>
 <!-- ./wrapper -->
@@ -223,6 +235,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset(mix('backend/assets/js/responsive.bootstrap4.min.js')) }}"></script>
 
 <script src="{{ asset(mix('backend/assets/js/scripts.js')) }}"></script>
+@notifyJs
 @hasSection('js')
     @yield('js')
 @endif
