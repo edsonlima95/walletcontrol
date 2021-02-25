@@ -120,9 +120,8 @@ class AppControlController extends Controller
 
             if ($createEnrollment) {
                 $type = $request->type == 'income' ? 'income' : 'expense';
-                $message = $this->message->success('Seu lançamento foi cadastrado com sucesso!')->render();
-                return redirect()->route('control.invoice', ['type' => $type])
-                    ->with(['message' => $message]);
+                 notify()->success('Lançamento foi cadastrado com sucesso','Tudo certo!');
+                return redirect()->route('control.invoice', ['type' => $type]);
             }
         }
 
@@ -144,8 +143,6 @@ class AppControlController extends Controller
 
             $period = new \DatePeriod($startDate, $interval, $endDate);
 
-
-
             $invoice_id = $invoices->id;
             foreach ($period as $item) {
                 $invoices->invoice_of = $invoice_id;
@@ -154,21 +151,19 @@ class AppControlController extends Controller
                 $invoices->status = ($item->format('Y-m-d') <= date('Y-m-d') ? 'paid' : 'unpaid');
                 $invoiceFixed = Invoices::create($invoices->toArray());
             }
-            return;
+
 
             if ($invoiceFixed) {
                 $type = $request->type == 'income' ? 'income' : 'expense';
-                $message = $this->message->success('Seu lançamento foi cadastrado com sucesso!')->render();
-                return redirect()->route('control.invoice', ['type' => $type])
-                    ->with(['message' => $message]);
+                notify()->success('Lançamento foi cadastrado com sucesso','Tudo certo!');
+                return redirect()->route('control.invoice', ['type' => $type]);
             }
         }
 
         if ($single) {
             $type = $request->type == 'income' ? 'income' : 'expense';
-            $message = $this->message->success('Seu lançamento foi cadastrado com sucesso!')->render();
-            return redirect()->route('control.invoice', ['type' => $type])
-                ->with(['message' => $message]);
+            notify()->success('Lançamento foi cadastrado com sucesso','Tudo certo!');
+            return redirect()->route('control.invoice', ['type' => $type]);
         }
     }
 
@@ -220,7 +215,7 @@ class AppControlController extends Controller
             foreach ($invoices as $invoice) {
                 $total[] = $invoice->id;
             }
-            $sumTotal = DB::table('invoices')->whereIn('id', $total)->sum('value');
+            $sumTotal = DB::table('invoices')->where('status','!=','paid')->whereIn('id', $total)->sum('value');
         }
 
         return view('admin.invoices', [
@@ -262,9 +257,8 @@ class AppControlController extends Controller
             $invoiceUpdate->status = (date($request->due_at) <= date('Y-m-d') ? 'paid' : 'unpaid');
 
             if ($invoiceUpdate->save()) {
-                $message = $this->message->success('Seu lançamento foi atualizado com sucesso!')->render();
-                return redirect()->route('control.invoiceEdit', ['id' => $request->id])
-                    ->with(['message' => $message]);
+                notify()->success('Seu lançamento foi atualizado com sucesso','Tudo certo!');
+                return redirect()->route('control.invoiceEdit', ['id' => $request->id]);
             }
         }
 
@@ -291,9 +285,8 @@ class AppControlController extends Controller
                 $fixedUpdate = $fixed->save();
             }
             if ($fixedUpdate) {
-                $message = $this->message->success('Seu lançamento foi atualizado com sucesso!')->render();
-                return redirect()->route('control.invoiceEdit', ['id' => $request->id])
-                    ->with(['message' => $message]);
+                notify()->success('Seu lançamento foi atualizado com sucesso','Tudo certo!');
+                return redirect()->route('control.invoiceEdit', ['id' => $request->id]);
             }
         }
 
@@ -309,9 +302,8 @@ class AppControlController extends Controller
             $enrollment->due_at = date("{$year}-{$month}-{$day}");
 
             if ($enrollment->save()) {
-                $message = $this->message->success('Seu lançamento foi atualizado com sucesso!')->render();
-                return redirect()->route('control.invoiceEdit', ['id' => $request->id])
-                    ->with(['message' => $message]);
+                notify()->success('Seu lançamento foi atualizado com sucesso','Tudo certo!');
+                return redirect()->route('control.invoiceEdit', ['id' => $request->id]);
             }
         }
     }

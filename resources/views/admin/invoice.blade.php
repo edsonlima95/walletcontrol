@@ -5,16 +5,14 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-6 title-invoice">
                     <h1 class="m-0 text-dark"><i
                             class="fa fa-plus-circle mr-2"></i> {{$type == 'expense' ? 'Lançar despesa' : 'Lançar receita'}}
                     </h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a class="btn btn-dark"
-                                                       href="{{route('control.invoices',['type'=>$type])}}"><i
-                                    class="fa fa-list-alt mr-2"></i> Listar</a></li>
+                        <li class="breadcrumb-item col-sm-12 mt-3"><a class="btn btn-dark col-sm-12" href="{{route('control.invoices',['type'=>$type])}}"><i class="fa fa-list-alt mr-2"></i> Listar</a></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -23,16 +21,6 @@
     <!-- /.content-header -->
     <div class="row justify-content-center">
         <div class="col-lg-7">
-            @if($errors->any())
-                @foreach($errors->all() as $error)
-                    <div class="alert alert-danger">
-                        {{$error}}
-                    </div>
-                @endforeach
-            @endif
-            @if(session()->exists('message'))
-                {!! session()->get('message') !!}
-            @endif
             <div class="card">
                 <div class="card-body">
                     @if(!empty($invoice->id))
@@ -120,21 +108,37 @@
                             <div class="form-group">
                                 <label for="description">Descrição</label>
                                 <input type="text" name="description"
-                                       class="form-control" value="{{old('description')}}"
+                                       class="form-control {{$errors->has('description') ? 'is-invalid' : ''}}" value="{{old('description')}}"
                                        id="description">
+                                @if($errors->has('description'))
+                                    <div class="invalid-feedback font-weight-bold">
+                                        {{$errors->first('description')}}
+                                    </div>
+                                @endif
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="value">Valor</label>
-                                        <input type="text" name="value" class="form-control mask-money" id="value">
+                                        <input type="text" name="value" class="form-control mask-money {{$errors->has('value') ? 'is-invalid' : ''}}"
+                                              value="{{old('value')}}" id="value">
+                                        @if($errors->has('value'))
+                                            <div class="invalid-feedback font-weight-bold">
+                                                {{$errors->first('value')}}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="due_at">Data de vencimento</label>
-                                        <input type="date" name="due_at" class="form-control" id="due_at"
+                                        <input type="date" name="due_at" class="form-control {{$errors->has('due_at') ? 'is-invalid' : ''}}" id="due_at"
                                                value="{{old('due_at') ?? ''}}">
+                                        @if($errors->has('due_at'))
+                                            <div class="invalid-feedback font-weight-bold">
+                                                {{$errors->first('due_at')}}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -142,26 +146,36 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="wallet_id">Carteira</label>
-                                        <select name="wallet_id" class="form-control" id="wallet_id">
+                                        <select name="wallet_id" class="form-control {{$errors->has('wallet_id') ? 'is-invalid' : ''}}" id="wallet_id">
                                             <option value="" disabled selected>Selecione uma carteira</option>
                                             @foreach($wallets as $wallet)
                                                 <option
                                                     value="{{$wallet->id}}" {{old('wallet_id') == $wallet->id ? 'selected' : ''}}>{{$wallet->name}}</option>
                                             @endforeach
                                         </select>
+                                        @if($errors->has('wallet_id'))
+                                            <div class="invalid-feedback font-weight-bold">
+                                                {{$errors->first('wallet_id')}}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="category_id">Categoria</label>
-                                        <select name="category_id" class="form-control" id="category_id">
+                                        <select name="category_id" class="form-control {{$errors->has('category_id') ? 'is-invalid' : ''}}" id="category_id">
                                             <option value="" disabled selected>Selecione uma categoria</option>
                                             @foreach($categories as $category)
                                                 <option
                                                     value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
                                             @endforeach
                                         </select>
+                                        @if($errors->has('category_id'))
+                                            <div class="invalid-feedback font-weight-bold">
+                                                {{$errors->first('category_id')}}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-around col-lg-12 my-4">

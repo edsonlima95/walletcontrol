@@ -7,8 +7,23 @@ input[name='date1'],input[name='date2']{
     border-radius: 0;
 }
 
+input[type='search'],select[name='data-table_length'] {
+    background-color: #06e659;
+    border: 1px solid #00af41;
+}
+
+ul.pagination li a {
+    background-color: #01dc52 !important;
+    border: none;
+    color: black !important;
+}
+
+ul.pagination li.active a {
+   font-weight: bold;
+}
+
 .red-status {
-    color: #dc3545;
+    color: #ab3535;
 }
 
 /*Tira algusn textos das tabelas*/
@@ -36,7 +51,7 @@ div.content-wrapper{
 
 /*menu lateral*/
 aside.main-sidebar {
-    background-color: #00ff5f;
+    background-color:  #00ff5f;
     color: #343a40;
 }
 
@@ -110,4 +125,22 @@ aside.control-sidebar a {
     display: block;
     text-align: center;
     margin-top: 30px;
+}
+
+@media screen and (max-width: 575px) {
+    div.title-invoice {
+        text-align: center!important;
+    }
+
+    form.invoices-search {
+        flex-direction: column;
+    }
+    form.invoices-search div.btn-search {
+        justify-content: center;
+    }
+
+    form.invoices-search div.form-group {
+        margin-right: 0!important;
+    }
+
 }

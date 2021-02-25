@@ -29,6 +29,12 @@
             height: 100vh;
         }
 
+        @media screen and (max-width: 500px) {
+            div.left {
+                display: none;
+            }
+        }
+
     </style>
 </head>
 <body>

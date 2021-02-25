@@ -5,13 +5,13 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-sm-6 title-invoice">
                     <h1 class="m-0 text-dark"><i class="fa fa-list-alt mr-2"></i>Lista
                         de {{$type  == 'expense' ? 'despesas' : 'receitas'}}</h1>
                 </div><!-- /.col -->
-                <div class="col-sm-6">
+                <div class="col-sm-6 mt-3">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a class="btn btn-dark"
+                        <li class="breadcrumb-item col-sm-12"><a class="btn btn-dark col-sm-12"
                                                        href="{{route('control.invoice',['type'=>$type])}}"><i
                                     class="fa fa-plus-circle mr-2"></i>Lançar</a></li>
                     </ol>
@@ -24,7 +24,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <form action="{{route('control.invoices',['type'=>$type])}}" method="post" class="col-lg-3 d-flex">
+                    <form action="{{route('control.invoices',['type'=>$type])}}" method="post" class="col-lg-3 d-flex invoices-search">
                         @csrf
                         <div class="form-group mr-4">
                             <lable>Data início</lable>
@@ -34,7 +34,7 @@
                             <lable>Data fim</lable>
                             <input type="date" class="form-control" name="date2">
                         </div>
-                        <div class="ml-2 form-group d-flex align-items-end">
+                        <div class="ml-2 form-group d-flex align-items-end btn-search">
                             <lable></lable>
                             <button type="submit" class="btn"><i class="fa fa-search"></i></button>
                         </div>
@@ -106,8 +106,10 @@
 
                     if (response.status === 'paid') {
                         $(button).removeClass('fas fa-thumbs-down red-status').addClass('fas fa-thumbs-up');
+                        location.reload();
                     } else if (response.status === 'unpaid') {
                         $(button).removeClass('fas fa-thumbs-up').addClass('fas fa-thumbs-down red-status');
+                        location.reload();
                     }
                 }, 'json');
             })

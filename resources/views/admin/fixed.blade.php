@@ -48,8 +48,7 @@
                                     <td>Todo dia {{date('d',strtotime($fixed->due_at))}}</td>
                                     <td>R$ {{$fixed->value}}</td>
                                     <td>
-                                        <i class="fas fa-thumbs-up mr-3"></i>
-                                        <a href="{{route('control.invoiceEdit',['id'=>$fixed])}}"><i
+                                        <a style="color: black" href="{{route('control.invoiceEdit',['id'=>$fixed])}}"><i
                                                 class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>

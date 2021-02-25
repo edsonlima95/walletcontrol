@@ -17,17 +17,6 @@
     <!-- /.content-header -->
     <div class="row justify-content-center">
         <div class="col-lg-7">
-            {{-- Exibe os erros de validação--}}
-            @if($errors->any())
-                @foreach($errors->all() as $error)
-                    <div class="alart alert-danger p-3 my-4" style="border-radius: 5px" role="alert">
-                        {{$error}}
-                    </div>
-                @endforeach
-            @endif
-            @if(session()->exists('message'))
-                {!!  session()->get('message')!!}
-            @endif
             <div class="card">
                 <div class="card-body">
                     <form action="{{route('control.users.update',['user'=>$user->id])}}" method="post"
@@ -39,8 +28,13 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="name">Nome</label>
-                                    <input type="text" name="first_name" class="form-control" id="name"
+                                    <input type="text" name="first_name" class="form-control {{$errors->has('first_name') ? 'is-invalid' : ''}}" id="name"
                                            value="{{old('first_name') ?? $user->first_name}}">
+                                    @if($errors->has('first_name'))
+                                        <div class="invalid-feedback font-weight-bold">
+                                            {{$errors->first('first_name')}}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-6 d-flex justify-content-center">
@@ -70,8 +64,13 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label for="description">Email</label>
-                                    <input type="email" name="email" class="form-control" id="description"
+                                    <input type="email" name="email" class="form-control {{$errors->has('first_name') ? 'is-invalid' : ''}}" id="description"
                                            value="{{old('email') ?? $user->email}}">
+                                    @if($errors->has('email'))
+                                        <div class="invalid-feedback font-weight-bold">
+                                            {{$errors->first('email')}}
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-lg-12">
