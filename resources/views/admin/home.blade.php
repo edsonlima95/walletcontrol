@@ -28,7 +28,7 @@
                         <i class="fas fa-dollar-sign fa-2x"></i>
                     </div>
                     <div class="col-9 text-right">
-                        <p>Total</p>
+                        <p style="color: green; font-weight: 600">Total</p>
                         <p>R$ {{number_format($incomeUnpaid,2,',','.')}}</p>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                         <i class="fas fa-dollar-sign fa-2x"></i>
                     </div>
                     <div class="col-9 text-right">
-                        <p>Total</p>
+                        <p style="color: red; font-weight: 600">Total</p>
                         <p>R$ {{number_format($expenseUnpaid,2,',','.')}}</p>
                     </div>
                 </div>
@@ -65,8 +65,8 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <p class="mb-2">Recebido: R$ {{number_format($income,2,',','.')}}</p>
-                    <p class="m-0">Pago: R$ {{number_format($expense,2,',','.')}}</p>
+                    <p class="mb-2"><strong >Recebido:</strong>  <span style="color: green; font-weight: 600">R$ {{number_format($income,2,',','.')}}</span></p>
+                    <p class="m-0"><strong>Pago:</strong> <span style="color:red; font-weight: 600">R${{number_format($expense,2,',','.')}}</span></p>
                 </div>
             </div>
         </div>

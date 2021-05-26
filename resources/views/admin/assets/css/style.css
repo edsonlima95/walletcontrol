@@ -1,22 +1,10 @@
 
+div.card {
+    box-shadow: 0px 4px 16px rgb(0 0 0 / 8%)!important;
+}
+
 /*tabela*/
-input[name='date1'],input[name='date2']{
-    background-color: transparent;
-    border: 0;
-    border-bottom: 1px solid black;
-    border-radius: 0;
-}
 
-input[type='search'],select[name='data-table_length'] {
-    background-color: #06e659;
-    border: 1px solid #00af41;
-}
-
-ul.pagination li a {
-    background-color: #01dc52 !important;
-    border: none;
-    color: black !important;
-}
 
 ul.pagination li.active a {
    font-weight: bold;
@@ -46,17 +34,17 @@ div.info a {
 }
 
 div.content-wrapper{
-    background-color:  #00ff5f;
+    background-color:  #fbfbfb!important;
 }
 
 /*menu lateral*/
 aside.main-sidebar {
-    background-color:  #00ff5f;
-    color: #343a40;
+    background-color:  #00d27b;
+    color: #fff;
 }
 
 aside.main-sidebar a{
-    color: #001909;
+    color: #fff;
 }
 
 .nav-sidebar .nav-item>.nav-link {
@@ -65,20 +53,19 @@ aside.main-sidebar a{
 
 /*nav topo*/
 nav.main-header {
-    background-color:  #00ff5f;
+    background-color:  #00d27b;
     border-bottom: 1px solid black;
 }
 
 /*cards da home*/
 div.card {
-    background-color:  #03f55d;
+    background-color:  #fff;
     color: black;
 }
 
 div.card-header{
     color:  black;
     font-size: 1.4em;
-    font-weight: bold;
 }
 
 /*faturas foemulario*/
@@ -110,7 +97,7 @@ footer {
 
 .main-footer {
     border-top: none;
-    background-color: #03f55d !important;
+    background-color: #fff !important;
 }
 
 /*navegação do lado direito - perfil*/
